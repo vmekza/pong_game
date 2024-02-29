@@ -116,8 +116,7 @@ while running:
     if ball.xcor() > 323 and ball.xcor() < 340 and (ball.ycor() < gate_2.ycor() + 30 and ball.ycor() > gate_2.ycor() - 30):
         ball.setx(323)
         ball.xm *= -1
-    #     ball.setx(-330)
-    #     ball.xm *= -1
+  
 
     # if ball.xcor() == gate_2.xcor():s
     #     ball.setx(320)
