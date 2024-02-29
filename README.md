@@ -26,3 +26,17 @@ No installation is required beyond having Python installed on your system. The T
 To play the game, run the Python script from your terminal or command prompt:
 
 python pong_game.py
+
+Ensure you are in the correct directory where the pong_game.py file is located.
+
+## Controls
+
+Left gate up: W
+Left gate down: S
+Right gate up: Up Arrow
+Right gate down: Down Arrow
+Quit the game: Q
+
+## Development
+
+This game is still under development. Future enhancements will include score keeping, improved collision detection, and a start menu.
