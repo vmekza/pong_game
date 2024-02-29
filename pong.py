@@ -25,7 +25,7 @@ gate_2.shape("square")
 gate_2.shapesize(stretch_wid=5, stretch_len=1)
 gate_2.color("yellow")
 gate_2.penup()
-gate_2.goto(340, 40)
+gate_2.goto(350, 40)
 
 # Ball
 ball = turtle.Turtle()
@@ -113,8 +113,12 @@ while running:
 
     # Ball and gates
         
-    if ball.xcor() > 323 and ball.xcor() < 340 and (ball.ycor() < gate_2.ycor() + 30 and ball.ycor() > gate_2.ycor() - 30):
-        ball.setx(323)
+    if ball.xcor() > 330 and ball.xcor() < 340 and (ball.ycor() < gate_2.ycor() + 40 and ball.ycor() > gate_2.ycor() - 40):
+        ball.setx(330)
+        ball.xm *= -1
+  
+    if ball.xcor() < -330 and ball.xcor() > -340 and (ball.ycor() < gate_1.ycor() + 40 and ball.ycor() > gate_1.ycor() - 40):
+        ball.setx(-330)
         ball.xm *= -1
   
 
