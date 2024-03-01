@@ -6,8 +6,9 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
-
-
+# Score 
+score_1 = 0
+score_2 = 0
 
 # Gate 1
 gate_1 = turtle.Turtle()
@@ -37,6 +38,14 @@ ball.goto(0, 30)
 ball.xm = -2
 ball.ym = -2
 
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("PLAYER_1: 0     PLAYER_2: 0", align="center", font=("Courier", 24, "normal"))
 
 # Moves
 # gate_1 up-down
@@ -77,20 +86,23 @@ wn.onkeypress(gate_2_down, "Down")
 
 # Main game loop
 running = True
-def on_close():
-    global running
-    running = False
+game_over = False
 
-wn.onkeypress(on_close, "q")  # Press 'q' to quit
-wn.listen()
+# def on_close():
+#     global running
+#     running = False
+
+# wn.onkeypress(on_close, "q")  # Press 'q' to quit
+# wn.listen()
 
 while running:
     wn.update()
     time.sleep(0.017)  # Sleep for roughly 60 frames per second
 
-    # Move the ball
-    ball.setx(ball.xcor() + ball.xm)
-    ball.sety(ball.ycor() + ball.ym)
+    if not game_over:
+        # Move the ball
+        ball.setx(ball.xcor() + ball.xm)
+        ball.sety(ball.ycor() + ball.ym)
 
     # Border checking
     # Up and down
@@ -106,10 +118,16 @@ while running:
     if ball.xcor() > 390:
         ball.goto(0,0)
         ball.xm *= -1
+        score_1 += 1
+        pen.clear()
+        pen.write("PLAYER_1: {}     PLAYER_2: {}".format(score_1, score_2), align="center", font=("Courier", 24, "normal"))
     
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.xm *= -1
+        score_2 += 1
+        pen.clear()
+        pen.write("PLAYER_1: {}     PLAYER_2: {}".format(score_1, score_2), align="center", font=("Courier", 24, "normal"))
 
     # Ball and gates
         
@@ -120,12 +138,15 @@ while running:
     if ball.xcor() < -330 and ball.xcor() > -340 and (ball.ycor() < gate_1.ycor() + 40 and ball.ycor() > gate_1.ycor() - 40):
         ball.setx(-330)
         ball.xm *= -1
-  
 
-    # if ball.xcor() == gate_2.xcor():s
-    #     ball.setx(320)
-    #     ball.xm *= -1    
-        
+  
+     
+    if score_1 == 2 or score_2 == 2:
+        game_over = True
+        pen.clear()
+        pen.goto(0,0)
+        pen.write("GAME OVER! WE HAVE A WINNER!", align="center", font=("Courier", 24, "normal"))
+   
 
 # Close the window gracefully
-wn.bye()
+turtle.mainloop() 
